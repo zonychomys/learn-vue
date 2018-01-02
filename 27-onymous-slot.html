@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <my-slot>
+      <div slot="mem">16G</div>
+      <p slot="cpu">Core I7 2.6GHz</p>
+    </my-slot>
+  </div>
+
+  <template id="my-slot">
+    <div>
+      <slot name="cpu">CPU</slot>
+      <slot name="mem">MEM</slot>
+    </div>
+  </template>
+
+  <script>
+
+    Vue.component('my-slot', {
+      template: '#my-slot',
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+      },
+    });
+  </script>
+</body>
+</html>

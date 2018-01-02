@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+  </div>
+<script>
+  var app = new Vue({
+    // 将该Vue实例对象绑定到哪个页面元素上
+    el: '#app',
+    data: {
+      message: 'Hello Vue!'
+    }
+  })
+</script>
+</body>
+</html>

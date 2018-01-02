@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <parent-component></parent-component>
+  </div>
+
+<script>
+  // 创建并注册全局组件构造器
+  Vue.component('parent-component', {
+    components: {
+      'child-component-foo': {template: '<div>A child component foo!</div>'},
+      'child-component-bar': {template: '<div>A child component bar!</div>'},
+    },
+    template:
+      `
+        <div>
+          <child-component-foo></child-component-foo>
+          <child-component-bar></child-component-bar>
+        </div>
+      `,
+  });
+  new Vue({
+    el: '#app',
+    data: {
+    }
+  });
+</script>
+</body>
+</html>

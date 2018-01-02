@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue-router"></script>
+  <style>
+    body {
+      background-color: #e8e8e8;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <div class="page-header">
+          教育平台
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-2 col-xs-offset-2">
+        <div class="list-group">
+          <router-link class="list-group-item" to="/html5">HTML5</router-link>
+          <router-link class="list-group-item" to="/java">java</router-link>
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <div class="panel">
+          <div class="panel">
+            <router-view></router-view>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <template id="html5">
+    <div>
+      <div>HTML5</div>
+      <img src="https://gss0.bdstatic.com/94o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=78c93c0156e736d158138b0ea36b28ff/728da9773912b31b7096bff48418367adbb4e171.jpg">
+      <div>
+        <ul class="nav nav-tabs">
+          <router-link to="/html5/basic">基础班</router-link>
+          <router-link to="/html5/advance">高级班</router-link>
+        </ul>
+        <div class="tab-content">
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="html5-basic">
+    <div>
+      <div>基础班简介...</div>
+    </div>
+  </template>
+
+  <template id="html5-advance">
+    <div>
+      <div>高级班简介...</div>
+    </div>
+  </template>
+
+  <template id="java">
+    <div>
+      <div>HTML5</div>
+      <img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/w%3D268%3Bg%3D0/sign=f50cf73fd843ad4ba62e41c6ba393d92/0df431adcbef76096709930527dda3cc7cd99e2d.jpg">
+    </div>
+  </template>
+
+  <script>
+    // 定义路由组件
+    const html5 = Vue.extend({
+      template: '#html5',
+    })
+    const html5_basic = Vue.extend({
+      template: '#html5-basic',
+    })
+    const html5_advance = Vue.extend({
+      template: '#html5-advance',
+    })
+    const java = Vue.extend({
+      template: '#java',
+    })
+    // 定义路由
+    const routes = [
+      // 定义跟路由
+      { path: '/', redirect: '/html5' },
+      {
+        path: '/html5',
+        component: html5,
+        children: [
+          { path: '/', redirect: 'basic' },
+          { path: 'basic', component: html5_basic },
+          { path: 'advance', component: html5_advance },
+        ],
+      },
+      { path: '/java', component: java },
+    ]
+    // 创建路由实例
+    const router = new VueRouter({
+      routes: routes
+    })
+    // 创建Vue实例并挂载
+    const app = new Vue({
+      router: router,
+    }).$mount('#app')
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <my-slot></my-slot>
+    <my-slot>鹅鹅鹅</my-slot>
+  </div>
+
+  <template id="my-slot">
+    <div>
+      <p>0.0</p>
+      <slot>默认内容</slot>
+      <p>0.0</p>
+    </div>
+  </template>
+
+  <script>
+
+    Vue.component('my-slot', {
+      template: '#my-slot',
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+      },
+    });
+  </script>
+</body>
+</html>

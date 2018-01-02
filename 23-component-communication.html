@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <component-foo message="0.0"></component-foo>
+  </div>
+
+  <template id="component-foo">
+    <div>
+      <div>{{ message }}</div>
+    </div>
+  </template>
+
+  <script>
+    // 创建并注册全局组件构造器
+    Vue.component('component-foo', {
+      template: '#component-foo',
+      props: ['message',],
+    });
+
+    new Vue({
+      el: '#app',
+    });
+  </script>
+</body>
+</html>

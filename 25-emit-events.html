@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <my-component v-on:total="totalall()"></my-component>
+    <my-component v-on:total="totalall()"></my-component>
+    <p>总次数: {{ totalCounter }}</p>
+  </div>
+
+  <template id="my-component">
+    <button v-on:click="total()">点击次数{{ counter }}</button>
+  </template>
+
+  <script>
+    // 用于实现将子组件中的事件触发回传至父组件
+
+    Vue.component('my-component', {
+      template: '#my-component',
+      data: function() {
+        return {counter: 0};
+      },
+      methods: {
+        total: function() {
+          this.counter += 1;
+          // 通知外界此处出发了total方法
+          this.$emit('total');
+        }
+      },
+    });
+    var app = new Vue({
+      el: '#app',
+      data: {
+        totalCounter: 0,
+      },
+      methods: {
+        totalall: function() {
+          this.totalCounter += 1;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

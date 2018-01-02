@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <!-- v-text用于向指定标签中注入文本, 原有文本会被覆盖  -->
+    <p v-text="message">1.1</p>
+    <p>{{ message }}1.1</p>
+  </div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: '0.0',
+    }
+  })
+</script>
+</body>
+</html>

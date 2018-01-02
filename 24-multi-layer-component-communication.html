@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <parent-component v-bind:title="title"></parent-component>
+  </div>
+
+  <template id="child-component">
+    <div>
+      <div>{{ title }}</div>
+    </div>
+  </template>
+
+  <template id="parent-component">
+    <div>
+      <child-component v-bind:title="title"></child-component>
+    </div>
+  </template>
+
+  <script>
+    Vue.component('parent-component', {
+      components: {
+        'child-component': {
+          template: '#child-component',
+          props: ['title'],
+        },
+      },
+      template: '#parent-component',
+      props: ['title'],
+    });
+    new Vue({
+      el: '#app',
+      data: {
+        title: '0.0'
+      },
+    });
+  </script>
+</body>
+</html>

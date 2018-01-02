@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+  <div id="app">
+    <p>{{ fullname }}</p>
+    <button v-on:click="callComputedSetMethod()">调用计算属性的set方法</button>
+  </div>
+
+<script>
+  var app = new Vue({
+    el: '#app',
+    data: {
+      firstname: 'Fernando',
+      lastname: 'Alonso',
+    },
+    methods: {
+      callComputedSetMethod: function() {
+        this.fullname = 'Thierry Henry';
+      }
+    },
+    computed: {
+      fullname: {
+        get: function() {
+          return this.firstname + ' ' + this.lastname;
+        },
+        set: function(newName) {
+          var names = newName.split(' ');
+          this.firstname = names[0];
+          this.lastname = names[1];
+        },
+      }
+    },
+  })
+</script>
+</body>
+</html>
